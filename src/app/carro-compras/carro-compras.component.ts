@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { carro } from './carro';
+
 
 @Component({
   selector: 'app-carro-compras',
@@ -11,15 +13,22 @@ export class CarroComprasComponent {
 
   compra = {
     "name": "Ruca Malen Capítulo 2 Malbec",
-    "price": 1000, // Almacenar el precio como un número
+    "price": 1000, 
     "cantidad": 5,
-    "total": 0 // Inicializar el total como un número
+    "total": 0 
   };
 
-  // Calcular el total basado en el precio y la cantidad
   calcularTotal() {
     this.compra.total = this.compra.price * this.compra.cantidad;
   }
+
+
+  carro: carro[] = [
+    
+
+
+    
+  ];
 
 
 }
