@@ -10,33 +10,32 @@
             <th>Compra</th>
         </tr>
     </thead>
-    <tbody >
+    <tbody>
         @for (vino of vinos; track vino.name ;) {
-            <tr [ngClass]="{'clearance': vino.clearance}">
-                <td><img width="100" class="img-thumbnail" [src]="vino.image" [alt]="vino.image"> </td>
+        <tr [ngClass]="{'clearance': vino.clearance}">
+            <td><img width="100" class="img-thumbnail" [src]="vino.image" [alt]="vino.image"> </td>
             <td>{{vino.name}} </td>
             <td>{{vino.type}} </td>
-            <td >{{vino.price | currency}} </td>
+            <td>{{vino.price | currency}} </td>
             @if (vino.stock >0) {
-                <td>{{vino.stock}} </td>
+            <td>{{vino.stock}} </td>
             } @else {
-                <td> <span class="badge bg-warning text-dark"> Sin Stock </span></td>
-            
+            <td> <span class="badge bg-warning text-dark"> Sin Stock </span></td>
+
             }
 
-            <td> 
+            <td>
+                @if (vino.stock) {
 
-                <button class="btn btn-primary btn-sm " (click)="downQuantity(vino)"> - </button>
-                 <input type="text" [(ngModel)]="vino.quantity" (keyup)="onChangeQuantity($event,vino)">
-                 <button class="btn  btn-primary btn-sm " (click)="upQuantity(vino)"> + </button> 
-
+                <app-input-integer [(quantity)]="vino.quantity" [max]="vino.stock" (maxReached)="maxReached($event)"> </app-input-integer>
+            }
             </td>
 
         </tr>
-    } @empty {
+        } @empty {
         <tr>
             <td colspan="4">no hay vinos para mostrar</td>
         </tr>
-    }
+        }
     </tbody>
 </table>

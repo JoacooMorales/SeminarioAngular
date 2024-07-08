@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
 import { vino } from './vino';
+import { InputIntegerComponent } from "../input-integer/input-integer.component";
 
 @Component({
-  selector: 'app-vinos-list',
-  standalone: true,
-  imports: [CommonModule,FormsModule],
-  templateUrl: './vinos-list.component.html',
-  styleUrls: ['./vinos-list.component.scss']
+    selector: 'app-vinos-list',
+    standalone: true,
+    templateUrl: './vinos-list.component.html',
+    styleUrls: ['./vinos-list.component.scss'],
+    imports: [CommonModule, FormsModule, InputIntegerComponent]
 })
 export class VinosListComponent {
+
 
   vinos: vino[] = [
     {
@@ -43,18 +45,11 @@ export class VinosListComponent {
     }
   ];
 
-  upQuantity(vino:vino) : void {
-    if (vino.quantity < vino.stock)
-    vino.quantity++;
-  }
-  downQuantity (vino:vino) : void {
-    if (vino.quantity>0)
-    vino.quantity--;
+  maxReached (m:string){
+    alert(m)
   }
 
-  onChangeQuantity (event: any ,vino :vino)  : void{
-    console.log(event.key);
-  }
+
   
 
 }
