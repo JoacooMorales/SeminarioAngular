@@ -1,34 +1,33 @@
 import { Component } from '@angular/core';
-import { carro } from './carro';
+import { VinoCarroService } from '../vino-carro.service';
+import { vino } from '../vinos-list/vino';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
+
+/* maneja la logica del carrito */
 
 @Component({
   selector: 'app-carro-compras',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './carro-compras.component.html',
   styleUrl: './carro-compras.component.scss'
 })
 export class CarroComprasComponent {
 
-  compra = {
-    "name": "Ruca Malen Capítulo 2 Malbec",
-    "price": 1000, 
-    "cantidad": 5,
-    "total": 0 
-  };
+  listaCarro! : Observable<vino[]> ;
 
-  calcularTotal() {
-    this.compra.total = this.compra.price * this.compra.cantidad;
+  constructor(private carro: VinoCarroService) {
+  this.listaCarro = carro.listaCarro.asObservable();
   }
+    _listaCarro: vino[] = [];
 
 
-  carro: carro[] = [
+    addToCart(vino: vino): void {
+    }
+
     
-
-
-    
-  ];
 
 
 }

@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 
 import { vino } from './vino';
 import { InputIntegerComponent } from "../input-integer/input-integer.component";
+import { VinoCarroService } from '../vino-carro.service';
 
 @Component({
     selector: 'app-vinos-list',
@@ -13,6 +14,8 @@ import { InputIntegerComponent } from "../input-integer/input-integer.component"
     imports: [CommonModule, FormsModule, InputIntegerComponent]
 })
 export class VinosListComponent {
+
+
 
 
   vinos: vino[] = [
@@ -45,11 +48,22 @@ export class VinosListComponent {
     }
   ];
 
+  constructor (private carro:VinoCarroService){
+    
+  }
+
+
+  addToCart(vino: vino) : void {
+    this.carro.addToCart(vino);
+    vino.stock -= vino.quantity;
+    vino.quantity =0;
+  }
+
   maxReached (m:string){
     alert(m)
   }
 
-
+ 
   
 
 }
