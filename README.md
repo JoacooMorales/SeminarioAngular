@@ -1,4 +1,4 @@
-# SeminarioAngular
+# VinosDx
 
 ACLARACION : Se encuentra todo en la rama Master .
 
