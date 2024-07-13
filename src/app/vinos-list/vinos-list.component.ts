@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import { vino } from './vino';
 import { InputIntegerComponent } from "../input-integer/input-integer.component";
 import { VinoCarroService } from '../vino-carro.service';
+import { VinoDataService } from '../vino-data.service';
 
 @Component({
     selector: 'app-vinos-list',
@@ -18,45 +19,26 @@ export class VinosListComponent {
 
 
 
-  vinos: vino[] = [
-    {
-      name: "Ruca Malen Capítulo 2 Malbec",
-      type: "Tinto",
-      price: 1000,
-      stock: 5,
-      image: "assets/imagenes/ruca.jpeg",
-      clearance: false,
-      quantity:0,
-    },
-    {
-      name: "La Celia Heritage Single Vineyard",
-      type: "Tinto",
-      price: 2000,
-      stock: 4,
-      image: "assets/imagenes/celia.jpeg",
-      clearance: true,
-      quantity:0,
-    },
-    {
-      name: "Rutini",
-      type: "Tinto",
-      price: 10000,
-      stock: 0,
-      image: "assets/imagenes/rutini.jpeg",
-      clearance: false,
-      quantity:0,
-    }
-  ];
+  vinos: vino[] = [];
 
-  constructor (private carro:VinoCarroService){
+  constructor (
+    private carro:VinoCarroService,
+    private vinosDataService:VinoDataService){
     
+  }
+
+  ngOnInit () : void {
+    this.vinosDataService.getAll()
+    .subscribe(vinos=> this.vinos=vinos);
   }
 
 
   addToCart(vino: vino) : void {
+    if (vino.quantity>0) {
     this.carro.addToCart(vino);
     vino.stock -= vino.quantity;
     vino.quantity =0;
+  }
   }
 
   maxReached (m:string){

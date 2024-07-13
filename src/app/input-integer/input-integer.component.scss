@@ -1,5 +1,35 @@
-
-input{
-    max-width: 50px;
+.custom-input {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+.custom-btn + .custom-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background-color: #ced4da;
 }
 
+.custom-btn:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.custom-btn {
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    padding: 8px 12px;
+    background-color: #343a40;
+    border-color: #343a40;
+    color: #ffffff;
+    position: relative;
+}
+
+.custom-btn:hover {
+    background-color: #23272b;
+    border-color: #23272b;
+    color: #ffffff;
+}

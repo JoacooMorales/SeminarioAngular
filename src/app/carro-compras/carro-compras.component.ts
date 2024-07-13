@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 export class CarroComprasComponent {
 
   listaCarro! : Observable<vino[]> ;
+vino: any;
 
   constructor(private carro: VinoCarroService) {
   this.listaCarro = carro.listaCarro.asObservable();

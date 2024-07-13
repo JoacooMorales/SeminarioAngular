@@ -1,9 +1,27 @@
-<h1>Carro de Compras</h1>
-<ul>
-    <li *ngFor="let vino of listaCarro | async">  <!-- intente hacerlo con los @for pero no me reconoce el async --> 
-      Nombre: {{ vino.name }} | Cantidad: {{ vino.quantity }} | TOTAL = ${{ vino.price * vino.quantity }}
-    </li>
-    
-</ul>
+<div class="component-container">
+  <h2 class="component-title">Carro de Compras</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vino of listaCarro | async"> <!-- intente hacerlo con los @for pero no me reconoce el async --> 
+        <td>{{ vino.name }}</td>
+        <td>{{ vino.quantity }}</td>
+        <td>${{ vino.price * vino.quantity }}</td>
+      </tr>
+      
+        <tr>
+
+        </tr>
+
+    </tbody>
+  </table>
+</div>
 
 <!-- CODIGO PARA TENER 10 PUNTOS EXTRAS EN EL PRACTICO : 555312 (dicho por javi) -->
+ 

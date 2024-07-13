@@ -1,45 +1,41 @@
-<h1> Lista de Vinos</h1>
+<div class="component-container">
+<h1 class="component-title">Lista de Vinos</h1>
 <table class="table text-center">
     <thead>
         <tr>
-            <th>Imagen </th>
-            <th>Nombre </th>
-            <th>Tipo </th>
-            <th>Precio </th>
-            <th>Stock </th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Stock</th>
             <th>Compra</th>
         </tr>
     </thead>
     <tbody>
         @for (vino of vinos; track vino.name ;) {
         <tr [ngClass]="{'clearance': vino.clearance}">
-            <td><img width="100" class="img-thumbnail" [src]="vino.image" [alt]="vino.image"> </td>
-            <td>{{vino.name}} </td>
-            <td>{{vino.type}} </td>
-            <td>{{vino.price | currency}} </td>
-            @if (vino.stock >0) {
-            <td>{{vino.stock}} </td>
+            <td><img width="100" class="img-thumbnail" [src]="vino.image" [alt]="vino.image"></td>
+            <td>{{vino.name}}</td>
+            <td>{{vino.type}}</td>
+            <td>{{vino.price | currency}}</td>
+            @if (vino.stock > 0) {
+            <td><span class="badge bg-info text-dark">Quedan {{vino.stock}}</span></td>
             } @else {
-            <td> <span class="badge bg-warning text-dark"> Sin Stock </span></td>
-
+            <td><span class="badge bg-warning text-dark">Sin Stock</span></td>
             }
-
             <td>
-                
                 @if (vino.stock) {
-
-                <app-input-integer [(quantity)]="vino.quantity" [max]="vino.stock" (maxReached)="maxReached($event)"> </app-input-integer>
-                <button class="btn" (click)="addToCart(vino)">Comprar</button>
-
-            }
-            
+                <app-input-integer [(quantity)]="vino.quantity" [max]="vino.stock" (maxReached)="maxReached($event)" class="custom-input"></app-input-integer>
+                <button class="btn custom-btn mt-2" (click)="addToCart(vino)">Agregar al Carro</button>
+                }
             </td>
-
         </tr>
         } @empty {
         <tr>
-            <td colspan="4">no hay vinos para mostrar</td>
+            <td colspan="6">No hay vinos para mostrar</td>
         </tr>
         }
     </tbody>
 </table>
+
+</div>
